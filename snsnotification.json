@@ -1,0 +1,68 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+		"Parameters": {
+			"SNSTopic":
+			{
+				"Type":"String",
+				"Description":"SNS Topic Name"
+			},
+			"EmailSubscription":
+			{
+				"Type":"String",
+				"Description":"Email address for SNS Topic Endpoint"
+			},
+			"SNSTopic1":
+			{
+				"Type":"String",
+				"Description":"SNS Topic Name"
+			},
+			"EmailSubscription1":
+			{
+				"Type":"String",
+				"Description":"Email address for SNS Topic Endpoint"
+			},
+			"SNSTopic2":
+			{
+				"Type":"String",
+				"Description":"SNS Topic Name"
+			},
+			"EmailSubscription2":
+			{
+				"Type":"String",
+				"Description":"Email address for SNS Topic Endpoint"
+			}
+		},
+		
+		"Resources": {
+			"MySNSTopic" : {
+				"Type" : "AWS::SNS::Topic",
+				"Properties" : {
+				    "TopicName" : { "Ref" : "SNSTopic" },
+					"Subscription" : [ {
+						"Endpoint" : { "Ref" : "EmailSubscription" },
+						"Protocol" : "email"
+					} ]
+				}
+			},
+			"MySNSTopic2" : {
+				"Type" : "AWS::SNS::Topic",
+				"Properties" : {
+				    "TopicName" : { "Ref" : "SNSTopic1" },
+					"Subscription" : [ {
+						"Endpoint" : { "Ref" : "EmailSubscription1" },
+						"Protocol" : "email"
+					} ]
+				}
+			},
+			"MySNSTopic3" : {
+				"Type" : "AWS::SNS::Topic",
+				"Properties" : {
+				    "TopicName" : { "Ref" : "SNSTopic2" },
+					"Subscription" : [ {
+						"Endpoint" : { "Ref" : "EmailSubscription2" },
+						"Protocol" : "email"
+					} ]
+				}
+			}
+	}
+}
